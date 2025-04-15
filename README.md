@@ -4,7 +4,14 @@ A full-stack threat dashboard that allows users to search for public IP addresse
 
 ## Features
 
-- IP search bar
+- IP search bar for any public IPv4 (depending on Shodan's data availability and API access level)
+- - Displays key details like:
+  - ISP
+  - Organization
+  - Country
+  - City
+  - Open Ports
+  - Exposed Services (Transport, Banner, OS, Product, Version, Port)
 - Secure API key handling using .env and Django backend
 - Active search message showing what is currently being queried
 - Simple loading and error handling
