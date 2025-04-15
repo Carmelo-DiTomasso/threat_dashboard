@@ -41,9 +41,9 @@ function App() {
     setLoading(false); // hide loading message
   };
 
-  // This is what is shown on screen
+  // This is what is shown on screen  
   return (
-    <div>
+    <div style={{ maxWidth: "600px", margin: "0 auto", padding: "20px"}}>
       <h1>Threat Intelligence Dashboard</h1>
 
       {/* input box */}
@@ -68,14 +68,51 @@ function App() {
 
       {/* If result exists, show JSON response */}
       {result && (
-        <div>
-          <h2>Shodan Lookup:</h2>
+        <div style={{ backgroundColor: "#f0f4f8", borderRadiusP: "8px", padding: "15px", marginTop: "20px"}}>
+          <h2>IP Details:</h2>
             <p><strong>IP:</strong> {result.ip_str || query}</p>
+            <p><strong>ISP:</strong> {result.isp}</p>
             <p><strong>Org:</strong> {result.org}</p>
             <p><strong>Country:</strong> {result.country_name}</p>
             <p><strong>City:</strong> {result.city}</p>
-            <p><strong>Ports:</strong> {result.ports?.join(', ')}</p>
-            {/* strong - HTML tag to bold text */}
+
+            {result.data && result.data.length > 0 && (
+              <div>
+                <h3>Exposed Services</h3>
+
+                {result.data.map((entry, index) => (
+                  <div
+                    key={index}
+                    style={{
+                      border: "1px solid #ccc",
+                      borderRadius: "8px",
+                      padding: "10px",
+                      marginBottom: "10px",
+                    }}
+                  >
+                    <p><strong>Transport:</strong> {entry.transport || "Unknown"}</p>
+                    <p><strong>Banner:</strong></p>
+                    <pre style={{ whiteSpace: "pre-wrap" }}>{entry.data || "None"}</pre>
+                    <p><strong>Operating System:</strong> {result.os || "Unknown"}</p>
+                    <p><strong>Product:</strong> {entry.product || "Unknown"}</p>
+                    <p><strong>Version:</strong> {entry.version || "Unknown"}</p>
+                    <p><strong>Service Port:</strong> {entry.port}</p>
+                  </div>
+                ))}
+              </div>
+            )}
+
+
+            {result.ports && result.ports.length > 0 && (
+              <>
+                <h4>Open Ports</h4>
+                <ul>
+                  {result.ports.map((port, index) => (
+                    <li key={index}>Port {port}</li>
+                  ))}
+                </ul>
+              </>
+            )}
         </div>
       )}
       
