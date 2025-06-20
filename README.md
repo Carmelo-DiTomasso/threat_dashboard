@@ -1,4 +1,6 @@
 # Threat Dashboard
+![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)
+
 
 A full-stack threat dashboard that allows users to search for public IP addresses and view data from the Shodan API. Built with a React frontend and Django backend.
 
@@ -96,3 +98,8 @@ npm start
 ## About
 
 Built by Carmelo DiTomasso for practice with full-stack development, API usage, and secure architecture.
+
+## License
+
+This project is licensed under the [MIT License](LICENSE).
+
